@@ -14,12 +14,6 @@ app.get('/api/getList', (req,res) => {
     console.log('Sent list of items');
 });
 
-// Handles any requests that don't match the ones above
-app.get('*', (req,res) =>{
-    res.sendFile(path.join(__dirname+'/public/index.html'));
-});
-
-
 const port = process.env.PORT || 3001;
 const startExpress = () => app.listen(port);
 
