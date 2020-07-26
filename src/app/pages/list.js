@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './App.css';
-
+import '../App.css';
 
 class List extends Component {
   // Initialize the state
@@ -28,35 +27,32 @@ class List extends Component {
     const { list } = this.state;
 
     return (
-
-    <div className="App">
-      <header className="App-header">
-        <h1>List of Items</h1>
-        {/* Check to see if any items are found*/}
-        {list.length ? (
-          <div>
-            {/* Render the list of items */}
-            {list.map((item) => {
-              return(
-                <div>
-                  {item}
-                </div>
-              );
-            })}
-          </div>
-        ) : (
-          <div>
-            <h2>No List Items Found</h2>
-          </div>
-        )
-      }
-        <Link to={'./'}>
-          <button variant="raised">
-              Back Home
-          </button>
-        </Link>
-      </header>
-    </div>
+      <div>
+          <h1>List of Items</h1>
+          {/* Check to see if any items are found*/}
+          {list.length ? (
+            <div>
+              {/* Render the list of items */}
+              {list.map((item) => {
+                return(
+                  <div>
+                    {item}
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div>
+              <h2>No List Items Found</h2>
+            </div>
+          )
+        }
+          <Link to={'./'}>
+            <button variant="raised">
+                Back Home
+            </button>
+          </Link>
+      </div>
     );
   }
 }
