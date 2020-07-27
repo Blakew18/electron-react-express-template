@@ -1,9 +1,8 @@
 let server = require('./src/server/server');
 
-const { app, BrowserWindow, ipcMain  } = require('electron');
+const { app, BrowserWindow } = require('electron');
 const path = require('path');
 const url = require('url');
-const { autoUpdater } = require('electron-updater');
 
 let mainWindow;
 
@@ -21,9 +20,6 @@ function createWindow() {
   mainWindow.on('closed', function () {
     mainWindow = null;
   });
-  mainWindow.once('ready-to-show', () => {
-    autoUpdater.checkForUpdatesAndNotify();
-  });
 }
 app.on('ready', createWindow);
 app.on('window-all-closed', function () {
@@ -36,16 +32,5 @@ app.on('activate', function () {
     createWindow();
   }
 });
-ipcMain.on('app_version', (event) => {
-  event.sender.send('app_version', { version: app.getVersion() });
-});
-ipcMain.on('restart_app', () => {
-  autoUpdater.quitAndInstall();
-});
-autoUpdater.on('update-available', () => {
-  mainWindow.webContents.send('update_available');
-});
-autoUpdater.on('update-downloaded', () => {
-  mainWindow.webContents.send('update_downloaded');
-});
+
 server.startExpress();

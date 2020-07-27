@@ -1,4 +1,0 @@
-appId: myTestElectronUpdater
-publish:
-  provider: github
-  token: [b82227b7ac5fdc735a2e43fe57561585210f31c4]

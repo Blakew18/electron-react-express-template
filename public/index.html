@@ -10,7 +10,6 @@
       content="Web site created using create-react-app"
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <link rel="stylesheet" type = "text/css" href = "%PUBLIC_URL%/index.css" /> 
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -40,36 +39,5 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-    <div id="notification" class="hhidden">
-      <p id="message"></p>
-      <button id="close-button" onClick="closeNotification()">
-        Close
-      </button>
-      <button id="restart-button" onClick="restartApp()" class="hidden">
-        Restart
-      </button>
-    </div>
-    <script>
-      const notification = document.getElementById('notification');
-      const message = document.getElementById('message');
-      const restartButton = document.getElementById('restart-button');
-      ipcRenderer.on('update_available', () => {
-        ipcRenderer.removeAllListeners('update_available');
-        message.innerText = 'A new update is available. Downloading now...';
-        notification.classList.remove('hidden');
-      });
-      ipcRenderer.on('update_downloaded', () => {
-        ipcRenderer.removeAllListeners('update_downloaded');
-        message.innerText = 'Update Downloaded. It will be installed on restart. Restart now?';
-        restartButton.classList.remove('hhidden');
-        notification.classList.remove('hhidden');
-      });
-      function closeNotification() {
-        notification.classList.add('hhidden');
-      }
-      function restartApp() {
-        ipcRenderer.send('restart_app');
-      }
-    </script>
   </body>
 </html>
